@@ -11,15 +11,17 @@ model_path = 'model.keras'
 model = load_model(model_path)
 
 def preprocess_image(image, target_size):
-    # Convert the image to RGB (3 channels)
-    image = image.convert('RGB')  # 'RGB' mode converts to 3 channels
+    # Convert the image to grayscale (if your model expects grayscale images)
+    image = image.convert('L')  # 'L' mode converts to grayscale (1 channel)
     # Resize the image to the target size
     image = image.resize(target_size)
     # Convert image to numpy array and normalize
     image_array = np.array(image) / 255.0  # Normalize pixel values
-    # Reshape the image to (1, target_size[0], target_size[1], 3) for RGB
+    # Reshape the image to (1, target_size[0], target_size[1], 1) for grayscale
+    image_array = np.expand_dims(image_array, axis=-1)  # Add channel dimension for grayscale
     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
     return image_array
+
 
 
 
