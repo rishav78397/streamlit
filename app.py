@@ -10,10 +10,9 @@ model_path = 'model.keras'
 # Load the Keras model
 model = load_model(model_path)
 
-# Function to preprocess the uploaded image
 def preprocess_image(image, target_size):
-    # Convert the image to RGB if needed (for 3 channels)
-    image = image.convert('RGB')  # For RGB images
+    # Convert the image to RGB (3 channels)
+    image = image.convert('RGB')  # 'RGB' mode converts to 3 channels
     # Resize the image to the target size
     image = image.resize(target_size)
     # Convert image to numpy array and normalize
@@ -21,6 +20,7 @@ def preprocess_image(image, target_size):
     # Reshape the image to (1, target_size[0], target_size[1], 3) for RGB
     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
     return image_array
+
 
 
 # Streamlit app UI
