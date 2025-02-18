@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 
 # Path to your Keras model
-model_path = 'C:\\Users\\aaman\\Project 2025\\model.keras'
+model_path = 'model.keras'
 
 # Load the Keras model
 model = load_model(model_path)
