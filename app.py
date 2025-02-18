@@ -12,16 +12,16 @@ model = load_model(model_path)
 
 # Function to preprocess the uploaded image
 def preprocess_image(image, target_size):
-    # Convert the image to grayscale (if your model expects grayscale images)
-    image = image.convert('L')  # For grayscale
+    # Convert the image to RGB if needed (for 3 channels)
+    image = image.convert('RGB')  # For RGB images
     # Resize the image to the target size
     image = image.resize(target_size)
     # Convert image to numpy array and normalize
-    image_array = np.array(image) / 255.0  # Normalize the pixel values
-    # Reshape the image to (1, target_size[0], target_size[1], 1) for grayscale
-    image_array = np.expand_dims(image_array, axis=-1)  # Add the channel dimension for grayscale
+    image_array = np.array(image) / 255.0  # Normalize pixel values
+    # Reshape the image to (1, target_size[0], target_size[1], 3) for RGB
     image_array = np.expand_dims(image_array, axis=0)  # Add batch dimension
     return image_array
+
 
 # Streamlit app UI
 st.title("Image Classification App")
