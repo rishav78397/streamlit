@@ -36,7 +36,7 @@ if uploaded_file is not None:
 
     # Preprocess the uploaded image
     image = Image.open(uploaded_file)
-    target_size = (150, 150)  # Update this based on your model's input size
+    target_size = (128, 128)  # Update this based on your model's input size
     image_array = preprocess_image(image, target_size)
 
     # Make prediction
